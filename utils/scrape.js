@@ -1,6 +1,19 @@
-const Brainly = require("brainly-scraper-v2")
-const brain = new Brainly("id")
+const request = require('request')
+const cheerio = require('cheerio')
 
-module.exports.scrapeAnswers = async(array) => {
-    brain.search("es", "Pythagoras").then(console.log).catch(console.error)
+async function scrapeLinks(links) {
+    if (!links) return null
+
+    return new Promise((resolve, reject) => {
+        request(links, (error, response, html) => {
+            if (error) resolve(error)
+    
+            const $ = cheerio.load(html)
+            let result = $('.sg-text.sg-text--break-words.brn-rich-content.js-answer-content').text()
+    
+            resolve(result)
+        })
+    })
 }
+
+module.exports = { scrapeLinks }

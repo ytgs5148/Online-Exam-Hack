@@ -17,6 +17,11 @@ module.exports.getAnswers = async(array) => {
 }
 
 module.exports.findBestAnswer = (array , string) => {
+    if (!array || !string) {
+        console.log(`Couldn't get answers`)
+        return {link: null}
+    }
+
     const likeliNess = []
     array.forEach(text => {
         text = text.title
@@ -90,4 +95,10 @@ module.exports.getAccurateResult = (largestNumber , likeliNess , array) => {
             return array[j]
         }
     }
+}
+
+module.exports.delay = async(time) => {
+    return new Promise(function(resolve){
+        setTimeout(resolve, time*1000)
+    })
 }

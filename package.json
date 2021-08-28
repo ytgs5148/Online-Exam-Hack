@@ -7,10 +7,10 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
-    "brainly-scraper-ts": "^1.0.3",
-    "brainly-scraper-v2": "^2.0.4-1",
+    "cheerio": "^1.0.0-rc.10",
     "fs": "0.0.1-security",
-    "pdf-parse": "^1.1.1"
+    "pdf-parse": "^1.1.1",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "@types/pdf-parse": "^1.1.1"

@@ -2,15 +2,18 @@ const pdfParse = require('pdf-parse')
 const fs = require('fs')
 const questionFinder = require('./utils/question')
 const answerFinder = require('./utils/answer')
-const scraper = require('./utils/scrape.js')
+const scrapper = require('./utils/scrape')
 
-fs.readFile('./test/math.pdf' , async (err , pdfBuffer) => {
+fs.readFile('./test/sst.pdf' , async(err , pdfBuffer) => {
     if (err) throw err
 
+    let answerText = []
     const result = await pdfParse(pdfBuffer)
     const questions = questionFinder.getQuestion(result.text)
     const answerLink = await answerFinder.getAnswers(questions)
-    const answer = await scraper.scrapeAnswers(answerLink)
 
-    // console.log(answerLink)
+    for (let i = 0; i < answerLink.length; i++) {
+        let answers = await scrapper.scrapeLinks(answerLink[i])
+        answerText.push(answers)
+    }
 })
