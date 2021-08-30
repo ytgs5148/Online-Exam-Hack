@@ -4,7 +4,7 @@ const questionFinder = require('./utils/question')
 const answerFinder = require('./utils/answer')
 const scrapper = require('./utils/scrape')
 
-fs.readFile('./test/sst.pdf' , async(err , pdfBuffer) => {
+fs.readFile('./test/hist.pdf' , async(err , pdfBuffer) => {
     if (err) throw err
 
     let answerText = []
@@ -13,7 +13,14 @@ fs.readFile('./test/sst.pdf' , async(err , pdfBuffer) => {
     const answerLink = await answerFinder.getAnswers(questions)
 
     for (let i = 0; i < answerLink.length; i++) {
+        console.log(`Found answers for question Number ${i+1}`)
         let answers = await scrapper.scrapeLinks(answerLink[i])
         answerText.push(answers)
+    }
+
+    for (let i = 0; i < questions.length; i++) {
+        console.log(questions[i])
+        console.log(answerText[i])
+        console.log(`\n \n \n`)
     }
 })

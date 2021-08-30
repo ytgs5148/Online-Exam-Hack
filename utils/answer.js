@@ -10,7 +10,7 @@ module.exports.getAnswers = async(array) => {
         let resultArray = result.data.items
         let bestResult = this.findBestAnswer(resultArray , currentQuestion)
         answer.push(bestResult.link)
-        console.log(`Fetched Answers for question: ${currentQuestion}`)
+        console.log(`Found Question: ${currentQuestion}`)
     }
 
     return answer
