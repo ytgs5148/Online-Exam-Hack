@@ -4,7 +4,7 @@ const questionFinder = require('./utils/question')
 const answerFinder = require('./utils/answer')
 const scrapper = require('./utils/scrape')
 
-fs.readFile('./test/hist.pdf' , async(err , pdfBuffer) => {
+fs.readFile('./test/eng.pdf' , async(err , pdfBuffer) => {
     if (err) throw err
 
     let answerText = []
