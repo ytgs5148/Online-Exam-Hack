@@ -7,13 +7,10 @@ const scrapper = require('./utils/scrape')
 fs.readFile('./test/eng.pdf' , async(err , pdfBuffer) => {
     if (err) throw err
 
-    console.log("a");
     let answerText = []
     const result = await pdfParse(pdfBuffer)
     const questions = questionFinder.getQuestion(result.text)
     const answerLink = await answerFinder.getAnswers(questions)
-    console.log("a");
-
 
     for (let i = 0; i < answerLink.length; i++) {
         console.log(`Found answers for question Number ${i+1}`)
